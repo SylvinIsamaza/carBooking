@@ -10,7 +10,9 @@
   box-sizing: border-box;
   font-family: "Manrope", sans-serif;
 }
-
+::-webkit-scrollbar{
+  display: none
+}
 /* START: General styles */
 .max-width {
   @apply max-w-[1440px] mx-auto;

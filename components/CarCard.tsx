@@ -1,6 +1,6 @@
 "use client"
 import { carProps } from '@/types'
-import { calculateCarRent } from '@/utils'
+import { calculateCarRent, generateCarImageUrl } from '@/utils'
 import Image from 'next/image'
 import React, { useState } from 'react'
 import CustomButton from './CustomButton'
@@ -29,7 +29,7 @@ const CarCard = ({car}:CarProps) => {
   </span>
 </p>
 <div className="relative w-full h-40 my-3 object-contain">
-  <Image src='/hero.png' alt="car model" fill priority className='object-contain'/>
+  <Image src={generateCarImageUrl(car)} alt="car model" fill priority className='object-contain'/>
 </div>
 <div className="relative flex w-full mt-2">
 <div className="flex group-hover:invisible w-full justify-between text-gray">
@@ -58,9 +58,9 @@ const CarCard = ({car}:CarProps) => {
 </div>
 
  
- {open&&
+
   <CardDetails isOpen={open} closeModal={()=>setOpen(false)} car={car}/>
- } 
+ 
 
     </div>
   )

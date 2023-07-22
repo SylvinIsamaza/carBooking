@@ -1,5 +1,7 @@
+import { FilterProps, carProps } from "@/types";
 import axios from "axios";
-const url= 'https://cars-by-api-ninjas.p.rapidapi.com/v1/cars'
+import { url } from "inspector";
+
 
 const options = {
 
@@ -9,9 +11,17 @@ const options = {
     'X-RapidAPI-Host': 'cars-by-api-ninjas.p.rapidapi.com'
   }
 };
-export const fetchCar=async()=>{
+export const fetchCar=async(filters:FilterProps)=>{
+  const url=new URL('https://cars-by-api-ninjas.p.rapidapi.com/v1/cars')
+  
+  const {manufacturer,year,fuel,limit,model}=filters
+url.searchParams.append('manufacturer',manufacturer)
+url.searchParams.append('model',model)
+url.searchParams.append('fuel',fuel)
+url.searchParams.append('yearear',`${year}`)
+url.searchParams.append('limit',`${limit}`)
   try {
-    const response =await axios.get(url,options);
+    const response =await axios.get(`${url}`,options);
     return(response.data)
   } catch (error) {
     console.error(error);
@@ -30,3 +40,25 @@ export const calculateCarRent=(city_mpg:number,year:number)=>{
   return rentalRatePerDay
 }
 
+export const generateCarImageUrl=(car:carProps,angle?:string)=>{
+  const url=new URL('https://cdn.imagin.studio/getImage')
+  const {make,year,model}=car
+url.searchParams.append('customer','isamazasylvain')
+url.searchParams.append('make',make)
+url.searchParams.append('modelFamily',model.split(" ")[0])
+url.searchParams.append('zoomType','fullscreen')
+url.searchParams.append('modelYear',`${year}`)
+url.searchParams.append('angle',`${angle}`)
+return `${url}`
+}
+
+export const  updateSearchParms=(type:string,value:string)=>{
+  const searchParams = new URLSearchParams(window.location.search);
+  
+  searchParams.set(type,value);
+
+const newPathName = `${
+  window.location.pathname
+}?${searchParams.toString()}`;
+return newPathName
+}
