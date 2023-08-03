@@ -4,7 +4,7 @@ import { url } from "inspector";
 
 
 const options = {
-
+method:"GET",
   params: {model: 'corolla'},
   headers: {
     'X-RapidAPI-Key': '9f288d5447msh16fab8960c2fab2p1a4d3cjsn074f793dcfc2',
@@ -18,11 +18,14 @@ export const fetchCar=async(filters:FilterProps)=>{
 url.searchParams.append('manufacturer',manufacturer)
 url.searchParams.append('model',model)
 url.searchParams.append('fuel',fuel)
-url.searchParams.append('yearear',`${year}`)
+url.searchParams.append('year',`${year}`)
 url.searchParams.append('limit',`${limit}`)
+console.log(url)
   try {
-    const response =await axios.get(`${url}`,options);
-    return(response.data)
+    const response =await fetch(`${url}`,options);
+    const result=await response.json()
+    console.log(result)
+    return(result)
   } catch (error) {
     console.error(error);
 

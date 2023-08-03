@@ -5,7 +5,8 @@ import { carModel } from "@/constants/data";
 import { fetchCar } from "@/utils";
 import Image from "next/image";
 
-export default async function Home({searchParams}) {
+export default async function Home({searchParams}:string) {
+  // export default async function Home() {
   const allCars=await fetchCar({
     manufacturer:searchParams.manufacturer||'',
     year:searchParams.year||2022,
