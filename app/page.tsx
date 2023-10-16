@@ -1,4 +1,4 @@
-import { CustomFilter, Hero, SearchBar, ShowMore } from "@/components";
+import { CustomFilter, Footer, Hero, Navbar, SearchBar, ShowMore } from "@/components";
 import CarCard from "@/components/CarCard";
 import { fuels, yearsOfProduction } from "@/constants";
 import { carModel } from "@/constants/data";
@@ -20,7 +20,9 @@ export default async function Home({searchParams}) {
   console.log(isDataEmpty)
 
   return (
-    <main className="overflow-hidden">
+    <>
+      <Navbar/>
+    <main className="overflow-hidden pt-[5rem]">
       <Hero />
       <div className="mt-12 padding-x padding-y max-width" id="discover">
         <div className="home__text-container">
@@ -53,6 +55,9 @@ export default async function Home({searchParams}) {
         <p>{allCars?.message}</p>
       </div>)}
       
-    </main>
+      </main>
+      <Footer />
+      </>
   );
+    
 }
