@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 function Login() {
+  console.log(process.env.MONGODB_URL)
   const{user,loginUser}=useAuth()
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -20,7 +21,7 @@ function Login() {
     e.preventDefault();
     try {
       const data = await login({ email, password });
-
+  
       if (data.token) {
         Cookies.set("userToken", data.token, { expires: 7 });
         loginUser(data.user)
