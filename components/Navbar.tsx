@@ -61,7 +61,14 @@ function Navbar({open,setOpen}:{open:boolean,setOpen:(value:boolean)=>void}) {
           </div> : <div className="600px:flex justify-between gap-4 hidden  ">
             
             <CustomButton title='Cars' btnType='button' containerStyle='rounded-full font-[600]bg-white' handleClick={handleCars} />
-            <CustomButton title='Profile' btnType='button' containerStyle='rounded-full font-[600]bg-white' handleClick={()=>setOpen(!open)} />
+            <div className=" flex items-center justify-center" onClick={()=>setOpen(!open)}>
+              <Image
+                src={user?.image ? user.image : "/profile.png"}
+                alt="profile"
+                width={70}
+                height={70}
+              />
+            </div>
      
           </div>}
  
