@@ -6,6 +6,7 @@ import CustomButton from './CustomButton';
 import { useAuth } from '@/useContext/context';
 import { logoutUser } from '@/lib/actions/user.action';
 import { useRouter } from 'next/navigation';
+import Menu from './Menu';
 
 
 
@@ -54,7 +55,7 @@ function Navbar({open,setOpen}:{open:boolean,setOpen:(value:boolean)=>void}) {
           <Link href='/' className='flex items-center justify-center'>
             <Image src='/logo.svg' alt='car hub' width={118} height={18} className='object-contain'/>
           </Link>
-          {user == undefined ? <div className="600px:flex justify-between gap-2 hidden  ">
+          {user == undefined ? <div className="600px:flex  justify-between gap-2 hidden  ">
             <CustomButton title='Cars' btnType='button' containerStyle='rounded-full font-[600]bg-white' handleClick={handleCars} />
             <CustomButton title='Sign in' btnType='link' containerStyle=' font-[600] text-primary-blue' url="/login"/>
             <CustomButton title='Get started' btnType='link' containerStyle='rounded-full text-white bg-primary-blue min-w-[130px]' url="/register"/>
@@ -71,6 +72,8 @@ function Navbar({open,setOpen}:{open:boolean,setOpen:(value:boolean)=>void}) {
             </div>
      
           </div>}
+          <Menu handleLogout={handleLogout} />
+          
  
         </div>
       </div>
@@ -79,5 +82,4 @@ function Navbar({open,setOpen}:{open:boolean,setOpen:(value:boolean)=>void}) {
 }
 
 export default Navbar;
-
 

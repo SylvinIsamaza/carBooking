@@ -114,7 +114,7 @@ export const authenticateUser = async (cookie: string | undefined) => {
       throw new Error("Login session expired")
     }
 
-    const decodedUser = verify(cookie, jwtSecret) as JwtPayload;
+    const decodedUser = verify(cookie, jwtSecret)as JwtPayload;
     const savedUser = await user.findById(decodedUser.id);
     return savedUser;
   } catch (error:any) {

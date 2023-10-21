@@ -16,7 +16,7 @@ function Register() {
   }
 
   return (
-    <div className="600px:w-[60%] w-full max-w-[540px] py-10 rounded-2xl shadow-sm bg-white 600px:px-6 px-8">
+    <div className="600px:w-[60%] w-full max-w-[540px] 600px:h-fit h-screen py-10 rounded-2xl shadow-sm bg-white 600px:px-6 px-8">
       <div className="flex items-center justify-center">
         <p className='text-[32px] font-[600] text-gray-600 mb-[25px] ' >
           Sign up
