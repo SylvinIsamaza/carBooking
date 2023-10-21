@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-function CustomButton({title,containerStyle,handleClick,btnType,rightIcon,textStyles,url}:CustomButtonProps) {
+function CustomButton({title,containerStyle,handleClick,btnType,rightIcon,textStyles,url,leftIcon}:CustomButtonProps) {
   return (
     <button
       disabled={false}
@@ -12,7 +12,10 @@ function CustomButton({title,containerStyle,handleClick,btnType,rightIcon,textSt
       className={`custom-btn ${containerStyle} `}
       onClick={handleClick}
     >
-      {btnType == "link" && url ? <Link href={url}>{ title}</Link>:<span className={`flex-1 ${textStyles}`}>
+            {leftIcon?<div className="relative h-5 w-6">
+<Image src={leftIcon} fill className="object-contain" alt="right icon" />
+</div>:""}
+      {btnType == "link" && url ? <Link href={url}>{title}</Link> : <span className={`flex-1 ${textStyles}`}>
   {title}
 </span>}
 

@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 
 
 
-function Navbar() {
+function Navbar({open,setOpen}:{open:boolean,setOpen:(value:boolean)=>void}) {
   const {user,logout}=useAuth()
   const [scrollPosition, setScrollPosition] = useState(0);
   const [threshHold, setThreshHold] = useState(0);
@@ -31,7 +31,7 @@ function Navbar() {
   }, []);
   const handleCars = () => {
     const carContainer=document.getElementById("discover")
-    carContainer?.scrollIntoView()
+    carContainer?.scrollIntoView({behavior:"smooth"})
     
   }
   const router=useRouter()
@@ -46,6 +46,7 @@ function Navbar() {
 
     
   }
+ 
   return (
     <header>
       <div className={`w-full fixed ${scrollPosition > threshHold ? "bg-white" : ""} mb-16 z-20`}>
@@ -57,9 +58,11 @@ function Navbar() {
             <CustomButton title='Cars' btnType='button' containerStyle='rounded-full font-[600]bg-white' handleClick={handleCars} />
             <CustomButton title='Sign in' btnType='link' containerStyle=' font-[600] text-primary-blue' url="/login"/>
             <CustomButton title='Get started' btnType='link' containerStyle='rounded-full text-white bg-primary-blue min-w-[130px]' url="/register"/>
-          </div> :<div className="600px:flex justify-between gap-6 hidden  ">
-            <button>Cars</button>
-            <button onClick={handleLogout}>Logout</button>
+          </div> : <div className="600px:flex justify-between gap-4 hidden  ">
+            
+            <CustomButton title='Cars' btnType='button' containerStyle='rounded-full font-[600]bg-white' handleClick={handleCars} />
+            <CustomButton title='Profile' btnType='button' containerStyle='rounded-full font-[600]bg-white' handleClick={()=>setOpen(!open)} />
+     
           </div>}
  
         </div>
@@ -69,3 +72,5 @@ function Navbar() {
 }
 
 export default Navbar;
+
+

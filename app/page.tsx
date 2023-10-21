@@ -4,6 +4,7 @@ import CustomFilter from "@/components/CustomFilter";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
+import ProfileModal from "@/components/profileModal";
 import SearchBar from "@/components/SearchBar";
 import ShowMore from "@/components/ShowMore";
 import { fuels, yearsOfProduction } from "@/constants";
@@ -20,19 +21,16 @@ import { useEffect, useState } from "react";
 
 export default function Home({ searchParams }) {
   const [allCars, setAllCars] = useState({});
-  const data=useAuth()
-  const [user,setUser]=useState(data.user)
-  
+  const data = useAuth();
+  const [user, setUser] = useState(data.user);
 
   useEffect(() => {
     const authUser = async () => {
-      const loginUser = await authentication()
-      setUser(loginUser)
-      data.loginUser(loginUser)
-      
-      
-    }
-    authUser()
+      const loginUser = await authentication();
+      setUser(loginUser);
+      data.loginUser(loginUser);
+    };
+    authUser();
     const fetchCars = async () => {
       try {
         const cars = await fetchCar({
@@ -49,21 +47,22 @@ export default function Home({ searchParams }) {
     };
 
     fetchCars();
-  }, [searchParams,user&&user.id]);
+  }, [searchParams, user && user.id]);
 
   // export default async function Home() {
 
   const isDataEmpty =
     !Array.isArray(allCars) || allCars?.length < 1 || !allCars;
 
+  
+    const [open,setOpen]=useState(false)
   return (
     <>
-      <Navbar />
+      <Navbar open={open} setOpen={setOpen} />
       <main className="overflow-hidden pt-[5rem]">
         <Hero />
         <div className="mt-12 padding-x padding-y max-width" id="discover">
           <div className="home__text-container">
-            
             <h1 className="text-4xl font-extrabold">Car Catalogue</h1>
             <p>Explore the cars you might like</p>
           </div>
@@ -96,6 +95,7 @@ export default function Home({ searchParams }) {
         )}
       </main>
       <Footer />
+      {open?<ProfileModal show={open} setIsShow={setOpen}></ProfileModal>:""}
     </>
   );
 }

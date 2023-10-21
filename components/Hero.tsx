@@ -5,9 +5,14 @@ import Image from "next/image";
 import { useAuth } from "@/useContext/context";
 
 function Hero() {
+  const handleCars = () => {
+    const carContainer=document.getElementById("discover")
+    carContainer?.scrollIntoView({behavior:"smooth"})
+    
+  }
   const { user } = useAuth()
   console.log(user)
-  const handleScroll = () => {};
+ 
   return (
     <div className="hero">
       <div className="flex-1 pt-36 padding-x">
@@ -23,7 +28,7 @@ function Hero() {
         <CustomButton
           title="Explore car"
           containerStyle="bg-primary-blue text-white rounded-full mt-10"
-          handleClick={handleScroll}
+          handleClick={handleCars}
         />
       </div>
       <div className="hero__image-container">
