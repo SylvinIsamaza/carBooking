@@ -65,8 +65,8 @@ function Navbar({open,setOpen}:{open:boolean,setOpen:(value:boolean)=>void}) {
               <Image
                 src={user?.image ? user.image : "/profile.png"}
                 alt="profile"
-                width={70}
-                height={70}
+                width={50}
+                height={50}
               />
             </div>
      
