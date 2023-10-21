@@ -2,14 +2,18 @@
 import React from "react";
 import CustomButton from "./CustomButton";
 import Image from "next/image";
+import { useAuth } from "@/useContext/context";
 
 function Hero() {
+  const { user } = useAuth()
+  console.log(user)
   const handleScroll = () => {};
   return (
     <div className="hero">
       <div className="flex-1 pt-36 padding-x">
+        {user!=undefined ? <h1 className="hero__subtitle">Welcome back </h1> : ""}
         <h1 className="hero__title">
-          Find,book,buy,or rent a car -quickly and easily
+          Find  car to buy quickly and easily 
         </h1>
         <p className="hero__subtitle">
           Stream line your car renting expericence with our effortless booking

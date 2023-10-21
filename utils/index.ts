@@ -1,6 +1,8 @@
+import { authenticateUser } from "@/lib/actions/user.action";
 import { FilterProps, carProps } from "@/types";
 import axios from "axios";
 import { url } from "inspector";
+import Cookies from "js-cookie";
 
 
 const options = {
@@ -64,4 +66,14 @@ const newPathName = `${
   window.location.pathname
 }?${searchParams.toString()}`;
 return newPathName
+}
+
+export const authentication=async ()=>{
+  const userToken = Cookies.get("userToken")
+  if (!userToken) {
+    return
+  }
+  else {
+    return (await authenticateUser(userToken))
+  }
 }

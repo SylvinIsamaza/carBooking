@@ -3,12 +3,19 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import CustomButton from './CustomButton';
+import { useAuth } from '@/useContext/context';
+import { logoutUser } from '@/lib/actions/user.action';
+import { useRouter } from 'next/navigation';
+
+
 
 function Navbar() {
+  const {user,logout}=useAuth()
   const [scrollPosition, setScrollPosition] = useState(0);
   const [threshHold, setThreshHold] = useState(0);
-
+  
   useEffect(() => {
+    
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
       setThreshHold(60);
@@ -22,18 +29,39 @@ function Navbar() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+  const handleCars = () => {
+    const carContainer=document.getElementById("discover")
+    carContainer?.scrollIntoView()
+    
+  }
+  const router=useRouter()
+  const handleLogout = () => {
+    console.log("logging out user")
+    try {
+      logout()
+      return router.replace("/login")
+    } catch (error) {
+      throw new Error("Logou failed")
+    }
 
+    
+  }
   return (
     <header>
-      <div className={`w-full fixed ${scrollPosition > threshHold ? "bg-white" : ""} mb-16 z-50 `}>
+      <div className={`w-full fixed ${scrollPosition > threshHold ? "bg-white" : ""} mb-16 z-20`}>
         <div className='max-w-[1440px] mx-auto flex justify-between items-center sm:px-10 3xl:px-[30%] px-6 py-4'>
           <Link href='/' className='flex items-center justify-center'>
             <Image src='/logo.svg' alt='car hub' width={118} height={18} className='object-contain'/>
           </Link>
-          <div className="600px:flex justify-between gap-6 hidden  ">
-            <CustomButton title='Get started' btnType='button' containerStyle='rounded-full text-white bg-primary-blue min-w-[130px]' />
-            <CustomButton title='Sign in' btnType='button' containerStyle='rounded-full text-primary-blue bg-white min-w-[130px]' />
-          </div>
+          {user == undefined ? <div className="600px:flex justify-between gap-2 hidden  ">
+            <CustomButton title='Cars' btnType='button' containerStyle='rounded-full font-[600]bg-white' handleClick={handleCars} />
+            <CustomButton title='Sign in' btnType='link' containerStyle=' font-[600] text-primary-blue' url="/login"/>
+            <CustomButton title='Get started' btnType='link' containerStyle='rounded-full text-white bg-primary-blue min-w-[130px]' url="/register"/>
+          </div> :<div className="600px:flex justify-between gap-6 hidden  ">
+            <button>Cars</button>
+            <button onClick={handleLogout}>Logout</button>
+          </div>}
+ 
         </div>
       </div>
     </header>

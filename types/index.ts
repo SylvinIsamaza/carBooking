@@ -8,6 +8,7 @@ export interface CustomButtonProps {
   isDisabled?: boolean;
   textStyles?: string;
   handleClick?: MouseEventHandler<HTMLButtonElement>;
+  url?:string
 }
 
 export interface searchManufacturerProps {
@@ -47,4 +48,31 @@ export interface CustomFilterProps{
 export interface ShowMoreProps{
   pageNumber:number
   isNext:boolean
+}
+
+export interface userTypes {
+  email: string;
+  password: string;
+  confirmPassword?: string;
+  id?: string;
+  path?: string;
+  username?: string;
+}
+export interface decodedUser {
+  id: string;
+  email: string;
+  image: string;
+  isBoarded: boolean;
+}
+export interface userProps{
+  email: string,
+  fullName: string,
+  image: string,
+  onBoarded:boolean
+  
+}
+export interface contextProps{
+  user: userProps|null,
+  loading: boolean,
+  error:null|string,
 }

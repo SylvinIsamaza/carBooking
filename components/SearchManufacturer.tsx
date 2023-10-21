@@ -38,7 +38,6 @@ function SearchManufacturer({
             placeholder="volkswagen"
             onChange={(e) => {
               setQuery(e.target.value);
-             
             }}
           ></Combobox.Input>
           <Transition

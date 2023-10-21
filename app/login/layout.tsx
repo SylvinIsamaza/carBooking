@@ -1,6 +1,7 @@
+
 import type { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "Register",
+  title: "Login",
   description: "Register to our application",
 };
 
