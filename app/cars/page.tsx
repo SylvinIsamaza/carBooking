@@ -17,7 +17,6 @@ import { authentication, fetchCar } from "@/utils";
 import Cookies from "js-cookie";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Home({ searchParams }) {
@@ -49,8 +48,6 @@ export default function Home({ searchParams }) {
 
     fetchCars();
   }, [searchParams, user && user.id]);
-  const router = useRouter()
-  
 
   // export default async function Home() {
 
@@ -61,9 +58,9 @@ export default function Home({ searchParams }) {
     const [open,setOpen]=useState(false)
   return (
     <>
-      <Navbar open={open} setOpen={setOpen}  />
+      <Navbar open={open} setOpen={setOpen} />
       <main className="overflow-hidden pt-[5rem]">
-        <Hero />
+
         <div className="mt-12 padding-x padding-y max-width" id="discover">
           <div className="home__text-container">
             <h1 className="text-4xl font-extrabold">Car Catalogue</h1>
@@ -97,8 +94,8 @@ export default function Home({ searchParams }) {
           </div>
         )}
       </main>
-      <Footer />
-      {open?<ProfileModal show={open} setIsShow={setOpen} ></ProfileModal>:""}
+      
+      {open?<ProfileModal show={open} setIsShow={setOpen}></ProfileModal>:""}
     </>
   );
 }

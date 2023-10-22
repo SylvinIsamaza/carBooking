@@ -42,12 +42,12 @@ export default function Menu({handleLogout}) {
                     {user == undefined ? (
                       <div className="flex flex-col justify-between gap-2 600px:hidden">
                         <CustomButton title='Cars' btnType='button' containerStyle='rounded-full font-[600] bg-white' handleClick={() => handleCars(close)} />
-                        <CustomButton title='Sign in' btnType='link' containerStyle='font-[600] text-primary-blue' url="/login" />
-                        <CustomButton title='Get started' btnType='link' containerStyle='rounded-full text-white bg-primary-blue min-w-[130px]' url="/register" />
+                        <CustomButton title='Sign in' btnType='link' containerStyle='font-[600] ' url="/login" />
+                        <CustomButton title='Get started' btnType='link' containerStyle='' url="/register" />
                       </div>
                     ) : (
                       <div className="600px:hidden flex-col items-start px-5 justify-between gap-4 flex ">
-                        <CustomButton title='Cars' leftIcon='/car2.png' btnType='button' containerStyle='rounded-full gap-3 font-[600] bg-white' handleClick={() => handleCars(close)} />
+                        <CustomButton title='Cars' url='/cars' leftIcon='/car2.png' btnType='link' containerStyle='rounded-full gap-3 font-[600] bg-white' handleClick={() => handleCars(close)} />
                         <CustomButton
                           title="Profile"
                           containerStyle="font-[600] rounded-full gap-3"
@@ -56,7 +56,9 @@ export default function Menu({handleLogout}) {
                           handleClick={() => close()}
                         ></CustomButton>
                         <CustomButton
-                          title="Collection"
+                            title="Collection"
+                            btnType="link"
+                            url='/collection'
                           containerStyle="font-[600] rounded-full gap-3"
                           leftIcon="/collection.png"
                             textStyles="!max-w-fit"

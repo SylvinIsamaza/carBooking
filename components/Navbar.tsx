@@ -56,12 +56,12 @@ function Navbar({open,setOpen}:{open:boolean,setOpen:(value:boolean)=>void}) {
             <Image src='/logo.svg' alt='car hub' width={118} height={18} className='object-contain'/>
           </Link>
           {user == undefined ? <div className="600px:flex  justify-between gap-2 hidden  ">
-            <CustomButton title='Cars' btnType='button' containerStyle='rounded-full font-[600]bg-white' handleClick={handleCars} />
+            <CustomButton title='Cars' url='/cars' btnType='link' containerStyle='rounded-full font-[600]bg-white' />
             <CustomButton title='Sign in' btnType='link' containerStyle=' font-[600] text-primary-blue' url="/login"/>
             <CustomButton title='Get started' btnType='link' containerStyle='rounded-full text-white bg-primary-blue min-w-[130px]' url="/register"/>
           </div> : <div className="600px:flex justify-between gap-4 hidden  ">
             
-            <CustomButton title='Cars' btnType='button' containerStyle='rounded-full font-[600]bg-white' handleClick={handleCars} />
+            <CustomButton title='Cars' btnType='link' url='/cars' containerStyle='rounded-full font-[600]bg-white' />
             <div className=" flex items-center justify-center" onClick={()=>setOpen(!open)}>
               <Image
                 src={user?.image ? user.image : "/profile.png"}
