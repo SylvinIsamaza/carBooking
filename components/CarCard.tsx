@@ -24,8 +24,8 @@ const CarCard = ({ car }: CarProps) => {
         <Image
           src="/collection_add.png"
           alt="add to collection"
-          width={30}
-          height={30}
+          width={25}
+          height={25}
         />
       </div>
 
